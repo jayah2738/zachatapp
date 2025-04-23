@@ -1,0 +1,49 @@
+.message-appear {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.message-appear-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 400ms, transform 400ms;
+}
+
+.message-leave {
+  opacity: 1;
+}
+
+.message-leave-active {
+  opacity: 0;
+  transition: opacity 400ms;
+}
+
+.selected-message {
+  background-color: rgba(147, 197, 253, 0.3) !important;
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.message-actions {
+  position: absolute;
+  right: 0;
+  top: -40px;
+  display: flex;
+  gap: 8px;
+  background: white;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+.message-action {
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.message-action:hover {
+  background: #f3f4f6;
+}

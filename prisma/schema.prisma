@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_URI")
+}
+
+model User {
+  id            String    @id @default(cuid()) @map("_id")
+  email         String    @unique
+  password      String
+  name          String
+  isOnline      Boolean   @default(false)
+  lastOnline    DateTime?
+  image         String?
+  messages      Message[]  @relation("UserMessages")
+  conversationIds String[] @default([])  // Store conversation IDs
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([conversationIds])
+}
+
+model Message {
+  id             String    @id @default(cuid()) @map("_id")
+  text           String
+  audio          String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  userId         String
+  user           User      @relation("UserMessages", fields: [userId], references: [id])
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  read           Boolean   @default(false)
+  delivered      Boolean   @default(false)
+  fileUrl        String?
+  fileType       String?
+  fileName       String?
+  reactions      Json?
+}
+
+model Conversation {
+  id            String    @id @default(cuid()) @map("_id")
+  messages      Message[]
+  participantIds String[] @default([])  // Store user IDs
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  lastMessageAt DateTime @default(now())
+
+  @@index([participantIds])
+}

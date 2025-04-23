@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ZachatApp - Real-time Chat Application
 
-## Getting Started
+A modern real-time chat application built with Next.js 13+, featuring user authentication, real-time messaging, and a beautiful UI.
 
-First, run the development server:
+## Features
 
+- User authentication
+- Real-time messaging
+- Conversation management
+- Read receipts
+- Modern UI with Tailwind CSS
+- MongoDB database
+- Fully typed with TypeScript
+
+## Setup Instructions
+
+### 1. MongoDB Setup
+
+1. Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register)
+2. Create a free account
+3. Create a new project
+4. Build a new cluster (choose the FREE tier)
+5. In the Security section:
+   - Create a database user (remember the username and password)
+   - Set up network access (allow access from anywhere for development)
+6. Once the cluster is created, click "Connect"
+7. Choose "Connect your application"
+8. Copy the connection string
+
+### 2. Application Setup
+
+1. Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Run the setup script:
+```bash
+npm run setup
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Update the `.env` file:
+- Replace the `MONGODB_URI` with your MongoDB connection string
+- Update username and password in the connection string
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Initialize the database:
+```bash
+npm run db:generate
+npm run db:push
+```
 
-## Learn More
+5. Start the development server:
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+6. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Optional: Real-time Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+To enable real-time features:
+1. Create a [Pusher account](https://pusher.com)
+2. Create a new Channels app
+3. Copy the credentials
+4. Update the `.env` file with your Pusher credentials
 
-## Deploy on Vercel
+## Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Next.js 13+](https://nextjs.org)
+- [NextAuth.js](https://next-auth.js.org)
+- [Prisma](https://prisma.io)
+- [MongoDB](https://mongodb.com)
+- [Tailwind CSS](https://tailwindcss.com)
+- [TypeScript](https://typescriptlang.org)
